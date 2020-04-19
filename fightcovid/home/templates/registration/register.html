@@ -1,0 +1,38 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+
+  <div class="section">Create User</div>
+
+  {% if form.errors %}
+    <div class="section">
+      <ul>
+        {% for key, value in form.errors.items %}
+          <li>{{ key }}:{{ value }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  {% if next %}
+    <div class="section">
+    {% if user.is_authenticated %}
+      <p>
+        Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.
+      </p>
+    {% else %}
+      <p>Please login to see this page.</p>
+    {% endif %}
+    </div>
+  {% endif %}
+
+  <div id="create-user" class="section form">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+      <input type="submit" value="create"/>
+    </form>
+  </div>
+{% endblock %}

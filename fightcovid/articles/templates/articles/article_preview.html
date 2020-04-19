@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-body">
+    <div>
+        <li>
+        <a href="{% url 'articles:article_detail'  article.id %}">{{ article.title }}</a>
+        {% if article.owner == user %}
+        (<a href="{% url 'articles:article_update' article.id %}">Edit</a> |
+        <a href="{% url 'articles:article_delete' article.id %}">Delete</a>)
+        {% endif %}
+      <p>{{ article.abstract|truncatechars:250 }}</p>
+        {% if article.tags.names  %}
+          <p> <!-- article.tags.names   article.tags_set.all() -->
+            {% for tag in article.tags.names  %}
+              <span class="badge badge-primary">{{ tag }}</span>
+            {% endfor %}
+          </p>
+        {% endif %}
+        </li>
+<!-- <p> views: {{ article.visit }}</p> -->
+    </div>
+  </div>
+</div>

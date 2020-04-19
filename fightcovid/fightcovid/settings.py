@@ -43,10 +43,18 @@ INSTALLED_APPS = [
     # Extensions - installed with pip3 / requirements.txt
     'django_extensions',
     'crispy_forms',
+    'markdownx',
+    'taggit',
     'rest_framework',
     'social_django',
     'home.apps.HomeConfig',
-'qas.apps.QasConfig',
+
+    #application
+    #'qas.apps.QasConfig',
+    'qa.apps.QaConfig',
+    'articles.apps.ArticlesConfig',
+#    'memes.apps.MemesConfig',
+
 ]
 
 # When we get to crispy forms :)
@@ -135,6 +143,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# directory to find media files.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = 'media/'
 
 # Add the settings below
 

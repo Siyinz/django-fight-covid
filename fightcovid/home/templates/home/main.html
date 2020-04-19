@@ -1,10 +1,45 @@
 {% extends "base_menu.html" %}
-{% block content%}
+{% block content %}
 <body>
-    <h1>Welcome to {{ settings.APP_NAME }}</h1>
+    <div class="page-header">
+    <h1>Welcome to {{ settings.APP_NAME }}.</h1>
+    </div>
+    <img src="https://www.pythonanywhere.com/user/si664project/files/home/si664project/group_project/fightcovid/home/static/fightcovid19.jpg"
+    alt="Fight covid19" width="700" height="400"></br>
+
+    <div class="content">
+    <h2>About the {{ settings.APP_NAME }}</h2>
     <p>
-    This is an online discussion site where people can hold conversations on Covid-19 in the form of posted messages.
-    There are three sections, including articles, discussion, and questions on Covid-19.
+    In January 2020 the World Health Organization (WHO) declared the outbreak of a new coronavirus disease, COVID-19, to be a Public Health Emergency of International Concern. The outbreak of COVID-19 may be stressful, but community can help to create solidarity in addressing COVID-19 together. To provide support in response to
+    it, we created Fight Covid-19.
     </p>
+    <p>
+
+    Fight Covid-19 is an online discussion site where people can hold conversations on Covid-19 during the pandemic in the form of posted messages.
+    There are two sections, including articles and questions on Covid-19. To participate in the discussions, you must have an account and be logged in.
+    </p>
+    <a href="{% url 'articles:all' %}" class="btn btn-info"> See All Articles</a>
+    <a href="{% url 'qa:all' %}" class="btn btn-info"> See All Questions</a>
+</br>
+    <h2>What should we know about Covid-19?</h3>
+    <li>
+    COVID-19 is the disease caused by the new coronavirus that emerged in China in December 2019. </li>
+    <li>COVID-19 symptoms include cough, fever, shortness of breath, muscle aches, sore throat, unexplained loss of taste or smell, diarrhea and headache. COVID-19 can be severe, and some cases have caused death
+The new coronavirus can be spread from person to person. It is diagnosed with a laboratory test.</li>
+    <li>There is no coronavirus vaccine yet. Prevention involves frequent hand-washing, coughing into the bend of your elbow, staying home when you are sick and wearing a cloth face covering if you can't practice social distancing.
+    </li>
+</br>
+    <h2>Resources</h2>
+    <li><a href="https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/index.html">Updates on Cases of Coronavirus in the U.S.</a></li>
+    <li><a href="https://www.cdc.gov/coronavirus/2019-ncov/whats-new-all.html">Latest News on Covid-19</a></li>
+    <li><a href='https://www.cdc.gov/coronavirus/2019-ncov/index.html'>CDC Covid-19 Page</a></li>
+    <li><a href='https://www.who.int/health-topics/coronavirus'>WHO Covid-19 Page</a></li>
+    </div>
+</br>
+</br>
+<img src="https://www.pythonanywhere.com/user/si664project/files/home/si664project/group_project/fightcovid/home/static/support.jpg"
+    alt="Fight covid19" width="700" height="100">
+</br>
+<p>This is a group project for SI 664 final assignment.</p>
 </body>
 {% endblock %}

@@ -20,13 +20,17 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from django.views.static import serve
+import home.views
 
 urlpatterns = [
     path('', include('home.urls')),  # Change to ads.urls
     path('admin/', admin.site.urls),  # Keep
     path('accounts/', include('django.contrib.auth.urls')),  # Keep
+    path('accounts/register', home.views.register, name='register'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # Keep
-    path('qas/', include('qas.urls')),
+    path('qa/', include('qa.urls')),
+    path('articles/', include('articles.urls')),
+#    path('memes/', include('memes.urls')),
 
 ]
 

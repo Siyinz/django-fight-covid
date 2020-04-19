@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-body">
+    <div>
+        <a href="{% url 'qa:question_detail' question.pk %}">{{ question.title }}</a>
+      <p>{{ question.content|truncatechars:140 }}</p>
+        {% if question.tags.names  %}
+          <p> <!-- question.tags.names   question.tags_set.all() -->
+            {% for tag in question.tags.names  %}
+              <span class="badge badge-primary">{{ tag }}</span>
+            {% endfor %}
+          </p>
+        {% endif %}
+<!-- <p> views: {{ question.visit }}</p> -->
+    </div>
+  </div>
+</div>

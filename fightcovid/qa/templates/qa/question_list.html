@@ -1,0 +1,21 @@
+{% extends "base_menu.html" %}
+{% block content %}
+  <div class="page-header">
+    <a href="{% url 'qa:question_create' %}" class="btn btn-primary pull-right"> Ask a Question  </a>
+    <h1> Questions </h1>
+  </div>
+  <div>
+    {% for question in question_list %}
+      {% include "qa/question_sample.html" with question=question %}
+    {% empty %}
+      <h4 class="no-data"> No question to display </h4>
+    {% endfor %}
+  </div>
+<p>
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next={% url 'qa:all' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'qa:all' %}">Login</a>
+{% endif %}
+</p>
+{% endblock content %}

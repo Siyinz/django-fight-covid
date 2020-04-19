@@ -1,0 +1,117 @@
+{% extends "base_menu.html" %}
+
+{% block title %}{{ question.title }}{% endblock %}
+
+{% block content %}
+
+    <div class="page-header">
+      <a href="{% url 'qa:all' %}" class="btn btn-info pull-right"> See All Questions
+      </a>
+      <h1>{{ question.title }}</h1>
+    </div>
+
+    <div class="overview question" question-id="{{ question.id }}">
+      <div>
+        <div class="question-info options">
+        <small> Posted by {{ question.owner.username }}, {{ question.updated_at }}</small>
+{% if question.owner == user %}
+<a href = "{% url 'qa:question_update' question.id %}"> <i class = "fa fa-pencil"></i></a>
+{% endif %}
+        </div>
+      </div>
+      <div>
+        <p>{{ question.get_markdown|safe }}</p>
+        <div > <!-- question.tags.names tags.names-->
+            {% if question.tags.names %}
+            <p>
+              {% for tag in question.tags.names %}
+                <span class="badge badge-primary">{{ tag }}</span>
+              {% endfor %}
+            </p>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+
+
+
+
+<div class="page-header">
+<a href="{% url 'qa:answer_create' question.id %}" class="btn btn-primary pull-right" role="button"> Submit an Answer </a>
+    <h1 align="left" > Answers </h1>
+</div>
+    <div class="row">
+      <ul class="col-md-12">
+        {% for answer in answers %}
+
+
+         <div class="col-sm-9">
+        <small> Posted by {{ answer.solver }} </small>
+        </div>
+           <div class="col-sm-9 answer-description">
+              {{ answer.content }}
+            </div>
+
+        {% if user.is_authenticated %}
+        <div class="col-sm-3">
+            {% if answer.solver == user %}
+            <!-- <a href="js-01.htm" onclick="alert('Can't vote for yourself'); return false;">Click me</a> -->
+            <button onclick="voteFunction()"> <i class="fa fa-thumbs-up"></i> </button>
+            <script>
+            function voteFunction() {
+             alert("Can't vote for yourself");}
+            </script>
+            {% else %}
+            <form action="{% url 'qa:answer_vote' answer.id %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.path }}">
+              <input type="hidden" name="upvote" value="on">
+      <button type="submit" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Vote Up this answer">
+       <!--   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> --><i class="fa fa-thumbs-up"></i>
+       </button>
+             </form>
+             {% endif %}
+             <div > Votes {{ answer.total_votes }}</div>
+             </div>
+             {% else %}
+             <i class="fa fa-thumbs-up"></i>
+               <div > Votes {{ answer.total_votes }}</div>
+             </div>
+         <!-- class ="col-sm-1" <div>  <big class="custom-big"> Votes {{ answer.total_votes }} </big></div> -->
+        {% endif %}
+
+
+
+        <!--
+        <script>
+        $.getJSON('/upvote/' + answer.id + '/')
+  .done(function(data) {
+    // You've got your response here
+    $("YOUR-INPUT-SELECTOR").html(data.count);
+  })
+  .fail(function(xhr) {
+    // Server error
+    alert("Error: "+ xhr.responseText);
+  });
+        </script> -->
+        {% empty %}
+          <div class="text-center">
+            <h4> There are no answers yet. </h4>
+          </div>
+        {% endfor %}
+      </ul>
+    </div>
+
+
+
+{% endblock content %}
+
+{% block extra_js %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+{% endblock extra_js %}
+
