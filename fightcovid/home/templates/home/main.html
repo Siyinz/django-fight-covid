@@ -1,10 +1,14 @@
 {% extends "base_menu.html" %}
 {% block content %}
+{% load static %}
 <body>
     <div class="page-header">
     <h1>Welcome to {{ settings.APP_NAME }}.</h1>
     </div>
-    <img src="https://www.pythonanywhere.com/user/si664project/files/home/si664project/group_project/fightcovid/home/static/fightcovid19.jpg"
+ <!--   <img src="https://www.pythonanywhere.com/user/si664project/files/home/si664project/group_project/fightcovid/home/static/fightcovid19.jpg"
+    alt="Fight covid19" width="700" height="400"></br> -->
+
+    <img src="{% static "fightcovid19.jpg" %}"
     alt="Fight covid19" width="700" height="400"></br>
 
     <div class="content">
@@ -37,7 +41,9 @@ The new coronavirus can be spread from person to person. It is diagnosed with a 
     </div>
 </br>
 </br>
-<img src="https://www.pythonanywhere.com/user/si664project/files/home/si664project/group_project/fightcovid/home/static/support.jpg"
+<!-- <img src="https://www.pythonanywhere.com/user/si664project/files/home/si664project/group_project/fightcovid/home/static/support.jpg"
+    alt="Fight covid19" width="700" height="100"> -->
+    <img src="{% static "support.jpg" %}"
     alt="Fight covid19" width="700" height="100">
 </br>
 <p>This is a group project for SI 664 final assignment.</p>
