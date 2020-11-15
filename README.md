@@ -12,4 +12,5 @@ We have three data models within Q&A application -- Question, Tag and Answer. Qu
 
 
 This is the project for SI 664 final assignment. https://si664project.pythonanywhere.com/
+
 Contributor: @Siyinz @Anranmg
